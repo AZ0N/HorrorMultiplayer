@@ -14,7 +14,8 @@ public class CharacterSelectDisplay : NetworkBehaviour
 
     private NetworkList<CharacterSelecState> characterStates;
 
-    private void Awake() {
+    private void Awake()
+    {
         characterStates = new NetworkList<CharacterSelecState>();
     }
 
@@ -38,11 +39,6 @@ public class CharacterSelectDisplay : NetworkBehaviour
         {
             NetworkManager.Singleton.OnClientConnectedCallback += onClientConnect;
             NetworkManager.Singleton.OnClientDisconnectCallback += onClientDisconnect;
-
-            // Making sure no clients are missed on connect.
-            foreach (NetworkClient client in NetworkManager.Singleton.ConnectedClientsList) {
-                //onClientConnect(client.ClientId);
-            }
         }
     }
 
@@ -70,7 +66,8 @@ public class CharacterSelectDisplay : NetworkBehaviour
     {
         for (int i = 0; i < characterStates.Count; i++)
         {
-            if (characterStates[i].clientId == clientId) {
+            if (characterStates[i].clientId == clientId)
+            {
                 characterStates.RemoveAt(i);
                 break;
             }   

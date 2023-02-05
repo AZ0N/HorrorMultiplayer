@@ -16,7 +16,8 @@ public class PlayerNetwork : NetworkBehaviour
 
     private Vector2 moveDir;
 
-    private void Start() {
+    private void Start()
+    {
         if (!IsOwner) return;
         playerCamera.enabled = true;
         audioListener.enabled = true;
@@ -24,7 +25,8 @@ public class PlayerNetwork : NetworkBehaviour
         Cursor.visible = false;
     }
 
-    private void Update() {
+    private void Update()
+    {
         if (!IsOwner) return; 
         moveDir = Vector2.zero;
         if (Input.GetKey(KeyCode.W)) moveDir.y += 1;
@@ -38,11 +40,13 @@ public class PlayerNetwork : NetworkBehaviour
         transform.position += (transform.forward * moveDir.y + transform.right * moveDir.x) * moveSpeed * Time.deltaTime;
 
         // Cursor Locking
-        if (Input.GetKeyDown(KeyCode.Escape)) { // Unlock the cursor if the escape key is pressed
+        if (Input.GetKeyDown(KeyCode.Escape)) // Unlock the cursor if the escape key is pressed
+        { 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        else if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) { // Lock the cursor if the left or right mouse button is pressed
+        else if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) // Lock the cursor if the left or right mouse button is pressed
+        {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

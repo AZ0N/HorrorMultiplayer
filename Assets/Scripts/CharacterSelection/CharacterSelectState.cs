@@ -6,7 +6,8 @@ public struct CharacterSelecState : INetworkSerializable, IEquatable<CharacterSe
     public ulong clientId;
     public int characterId;
 
-    public CharacterSelecState(ulong clientId, int characterId = -1) {
+    public CharacterSelecState(ulong clientId, int characterId = -1)
+    {
         this.clientId = clientId;
         this.characterId = characterId;
     }

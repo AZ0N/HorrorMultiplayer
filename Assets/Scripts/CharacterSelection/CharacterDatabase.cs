@@ -12,7 +12,8 @@ public class CharacterDatabase : ScriptableObject
     {
         foreach (Character c in characters)
         {
-            if (c.Id == id) {
+            if (c.Id == id)
+            {
                 return c;
             }
         }
