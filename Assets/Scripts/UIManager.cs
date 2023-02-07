@@ -9,10 +9,10 @@ public class UIManager : NetworkBehaviour
 
     private void FixedUpdate()
     {
-        playerCountText.text = "Players: " + connectedPlayers.Value;
-
-        if (IsServer) {
+        if (IsServer)
+        {
             connectedPlayers.Value = NetworkManager.Singleton.ConnectedClients.Count;
         }
+        playerCountText.text = "Players: " + connectedPlayers.Value;
     }
 }

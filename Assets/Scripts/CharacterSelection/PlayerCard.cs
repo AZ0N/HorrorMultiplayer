@@ -23,7 +23,6 @@ public class PlayerCard : MonoBehaviour
             playerIcon.enabled = false;
             characterNameText.text = "Selecting...";
         }
-
         playerNameText.text = $"Player {state.clientId}";
         visualObject.SetActive(true);
     }

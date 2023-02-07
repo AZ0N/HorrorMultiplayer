@@ -5,14 +5,16 @@ using System.Linq;
 
 public class CharacterSelectDisplay : NetworkBehaviour 
 {
+    [Header("Character DB")]
     [SerializeField] private CharacterDatabase characterDatabase;
-    [SerializeField] private Transform characterButtonParent;
-    [SerializeField] private CharacterSelectButton characterButtonPrefab;
 
+    [Header("UI References")]
+    [SerializeField] private Transform characterButtonParent;
+    [SerializeField] private TMP_Text selectedCharacterText;
     [SerializeField] private PlayerCard[] playerCards;
 
-    [SerializeField] private TMP_Text selectedCharacterText;
-
+    [Header("Prefabs")]
+    [SerializeField] private CharacterSelectButton characterButtonPrefab;
     [SerializeField] private GameObject playerPrefab; //TODO MOVE!
 
     private NetworkList<CharacterSelecState> characterStates;
@@ -26,18 +28,15 @@ public class CharacterSelectDisplay : NetworkBehaviour
     {
         if (IsClient)
         {
-            var characters = characterDatabase.GetCharacters();
-
+            Character[] characters = characterDatabase.GetCharacters();
             // Loop over each character and instantiate buttons
             for (int i = 0; i < characters.Length; i++)
             {
-                var charButton = Instantiate(characterButtonPrefab, characterButtonParent);
+                CharacterSelectButton charButton = Instantiate(characterButtonPrefab, characterButtonParent);
                 charButton.SetCharacter(this, characters[i]);   
             }
-
             characterStates.OnListChanged += onPlayerStateChanged;
         }
-
         if (IsServer)
         {
             NetworkManager.Singleton.OnClientConnectedCallback += onClientConnect;
@@ -51,13 +50,11 @@ public class CharacterSelectDisplay : NetworkBehaviour
         {
             characterStates.OnListChanged -= onPlayerStateChanged;
         }
-
         if (IsServer)
         {
             NetworkManager.Singleton.OnClientConnectedCallback -= onClientConnect;
             NetworkManager.Singleton.OnClientDisconnectCallback -= onClientDisconnect;
         }
-
     }
 
     private void onClientConnect(ulong clientId)
@@ -81,7 +78,6 @@ public class CharacterSelectDisplay : NetworkBehaviour
     {
         // Update UI
         selectedCharacterText.text = $"Character {character.DisplayName}";
-
         // Notify server
         SelectCharacterServerRpc(character.Id);
     }
@@ -94,7 +90,7 @@ public class CharacterSelectDisplay : NetworkBehaviour
             if (characterStates[i].clientId == serverRpcParams.Receive.SenderClientId)
             {
                 // Check that the character exists
-                if (characterDatabase.GetCharacters().FirstOrDefault(c => c.Id == characterId) != null)
+                if (characterDatabase.ContainsCharacter(characterId))
                 {
                     characterStates[i] = new CharacterSelecState(characterStates[i].clientId, characterId);
                 }
@@ -106,7 +102,7 @@ public class CharacterSelectDisplay : NetworkBehaviour
         }
     }
 
-    public void StartGame()
+    public void OnStartGame()
     {
         if (IsServer)
         {
@@ -117,10 +113,8 @@ public class CharacterSelectDisplay : NetworkBehaviour
                 GameObject playerGO = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
                 playerGO.GetComponent<NetworkObject>().SpawnAsPlayerObject(playerId);
             }
-
             //TODO Make a child-object holding the UI, so the whole gameObject isn't disabled
             gameObject.SetActive(false);
-
         }
     }
 

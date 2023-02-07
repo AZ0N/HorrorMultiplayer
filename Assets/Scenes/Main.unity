@@ -625,7 +625,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1780241592}
         m_TargetAssemblyTypeName: CharacterSelectDisplay, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: OnStartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2836,7 +2836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterDatabase: {fileID: 11400000, guid: 35a617bdd7b1d8249b589099ce2692fa, type: 2}
   characterButtonParent: {fileID: 76013822}
-  characterButtonPrefab: {fileID: 7506042953781022641, guid: 06de86161b0a5a640a7bcaa2ba3f93a3, type: 3}
+  selectedCharacterText: {fileID: 277987759}
   playerCards:
   - {fileID: 1024118168}
   - {fileID: 928681547}
@@ -2844,7 +2844,7 @@ MonoBehaviour:
   - {fileID: 1627765211}
   - {fileID: 1964629188}
   - {fileID: 867340805}
-  selectedCharacterText: {fileID: 277987759}
+  characterButtonPrefab: {fileID: 7506042953781022641, guid: 06de86161b0a5a640a7bcaa2ba3f93a3, type: 3}
   playerPrefab: {fileID: 6844396505778087015, guid: b8d03e4e5fd02e94f93d9afcadf5c1d6, type: 3}
 --- !u!114 &1780241593
 MonoBehaviour:

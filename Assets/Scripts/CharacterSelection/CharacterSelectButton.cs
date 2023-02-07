@@ -12,9 +12,7 @@ public class CharacterSelectButton : MonoBehaviour
     {
         this.display = display;
         this.character = character;
-
-        iconImage.sprite = character.Icon;
-
+        this.iconImage.sprite = character.Icon;
     }
 
     public void SelectCharacter()
