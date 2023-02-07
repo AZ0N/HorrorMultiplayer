@@ -12,6 +12,8 @@ public class CharacterSelectDisplay : NetworkBehaviour
 
     [SerializeField] private TMP_Text selectedCharacterText;
 
+    [SerializeField] private GameObject playerPrefab; //TODO MOVE!
+
     private NetworkList<CharacterSelecState> characterStates;
 
     private void Awake()
@@ -93,6 +95,24 @@ public class CharacterSelectDisplay : NetworkBehaviour
                 // TODO Verify character id?
                 characterStates[i] = new CharacterSelecState(characterStates[i].clientId, characterId);
             }
+        }
+    }
+
+    public void StartGame()
+    {
+        if (IsServer)
+        {
+            //TODO Do somewhere else!
+            foreach (var playerId in NetworkManager.Singleton.ConnectedClientsIds)
+            {
+                //TODO Select prefab based on selected character!
+                GameObject playerGO = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
+                playerGO.GetComponent<NetworkObject>().SpawnAsPlayerObject(playerId);
+            }
+
+            //TODO Make a child-object holding the UI, so the whole gameObject isn't disabled
+            gameObject.SetActive(false);
+
         }
     }
 
