@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using Unity.Netcode;
+using System.Linq;
 
 public class CharacterSelectDisplay : NetworkBehaviour 
 {
@@ -92,8 +93,15 @@ public class CharacterSelectDisplay : NetworkBehaviour
         {
             if (characterStates[i].clientId == serverRpcParams.Receive.SenderClientId)
             {
-                // TODO Verify character id?
-                characterStates[i] = new CharacterSelecState(characterStates[i].clientId, characterId);
+                // Check that the character exists
+                if (characterDatabase.GetCharacters().FirstOrDefault(c => c.Id == characterId) != null)
+                {
+                    characterStates[i] = new CharacterSelecState(characterStates[i].clientId, characterId);
+                }
+                else
+                {
+                    //TODO Notify client that the selected character is invalid
+                }
             }
         }
     }
