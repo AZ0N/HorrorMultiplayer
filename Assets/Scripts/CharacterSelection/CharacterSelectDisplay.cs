@@ -114,8 +114,13 @@ public class CharacterSelectDisplay : NetworkBehaviour
                 playerGO.GetComponent<NetworkObject>().SpawnAsPlayerObject(playerId);
             }
             //TODO Make a child-object holding the UI, so the whole gameObject isn't disabled
-            gameObject.SetActive(false);
+            GameStartClientRpc();
         }
+    }
+
+    [ClientRpc]
+    private void GameStartClientRpc(ClientRpcParams clientRpcParams = default) {
+            gameObject.SetActive(false);
     }
 
     private void onPlayerStateChanged(NetworkListEvent<CharacterSelecState> changeEvent)
