@@ -35,12 +35,12 @@ public class CharacterSelectDisplay : NetworkBehaviour
                 CharacterSelectButton charButton = Instantiate(characterButtonPrefab, characterButtonParent);
                 charButton.SetCharacter(this, characters[i]);   
             }
-            characterStates.OnListChanged += onPlayerStateChanged;
+            characterStates.OnListChanged += OnPlayerStateChanged;
         }
         if (IsServer)
         {
-            NetworkManager.Singleton.OnClientConnectedCallback += onClientConnect;
-            NetworkManager.Singleton.OnClientDisconnectCallback += onClientDisconnect;
+            NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnect;
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnect;
         }
     }
 
@@ -48,21 +48,21 @@ public class CharacterSelectDisplay : NetworkBehaviour
     {
         if (IsClient)
         {
-            characterStates.OnListChanged -= onPlayerStateChanged;
+            characterStates.OnListChanged -= OnPlayerStateChanged;
         }
         if (IsServer)
         {
-            NetworkManager.Singleton.OnClientConnectedCallback -= onClientConnect;
-            NetworkManager.Singleton.OnClientDisconnectCallback -= onClientDisconnect;
+            NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnect;
+            NetworkManager.Singleton.OnClientDisconnectCallback -= OnClientDisconnect;
         }
     }
 
-    private void onClientConnect(ulong clientId)
+    private void OnClientConnect(ulong clientId)
     {
         characterStates.Add(new CharacterSelecState(clientId));
     }
 
-    private void onClientDisconnect(ulong clientId)
+    private void OnClientDisconnect(ulong clientId)
     {
         for (int i = 0; i < characterStates.Count; i++)
         {
@@ -113,17 +113,17 @@ public class CharacterSelectDisplay : NetworkBehaviour
                 GameObject playerGO = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
                 playerGO.GetComponent<NetworkObject>().SpawnAsPlayerObject(playerId);
             }
-            //TODO Make a child-object holding the UI, so the whole gameObject isn't disabled
             GameStartClientRpc();
         }
     }
 
     [ClientRpc]
     private void GameStartClientRpc(ClientRpcParams clientRpcParams = default) {
+            //TODO Make a child-object holding the UI, so the whole gameObject isn't disabled
             gameObject.SetActive(false);
     }
 
-    private void onPlayerStateChanged(NetworkListEvent<CharacterSelecState> changeEvent)
+    private void OnPlayerStateChanged(NetworkListEvent<CharacterSelecState> changeEvent)
     {
         for (int i = 0; i < playerCards.Length; i++)
         {
