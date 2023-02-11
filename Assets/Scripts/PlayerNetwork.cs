@@ -11,6 +11,9 @@ public class PlayerNetwork : NetworkBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private AudioListener audioListener;
 
+    [Header("Flashlight")]
+    [SerializeField] private Light flashlight;
+
     private float rotationX = 0;
     private float rotationY = 0;
     private Vector2 moveDir;
@@ -63,5 +66,11 @@ public class PlayerNetwork : NetworkBehaviour
         // Apply the rotation to the player and camera 
         transform.localRotation = Quaternion.Euler(0, rotationY, 0);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+
+        // Toggle flashlight
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            flashlight.gameObject.SetActive(!flashlight.gameObject.activeSelf);
+        }
     }
 }

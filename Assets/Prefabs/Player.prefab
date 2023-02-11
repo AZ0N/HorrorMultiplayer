@@ -521,3 +521,4 @@ MonoBehaviour:
   mouseSensitivity: 100
   playerCamera: {fileID: 5391861370818548155}
   audioListener: {fileID: 7048893807175090869}
+  flashlight: {fileID: 2007595452}
