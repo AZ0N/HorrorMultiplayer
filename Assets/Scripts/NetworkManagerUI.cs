@@ -49,7 +49,7 @@ public class NetworkManagerUI : MonoBehaviour
         if (isConnecting)
         {
             // Reached on a failed connection attempt
-            // TODO Handle
+            //TODO Handle
             Debug.Log("Connection attempt failed");
         }
         else

@@ -15,7 +15,7 @@ public class CharacterSelectDisplay : NetworkBehaviour
 
     [Header("Prefabs")]
     [SerializeField] private CharacterSelectButton characterButtonPrefab;
-    [SerializeField] private GameObject playerPrefab; //TODO MOVE!
+    [SerializeField] private GameObject playerPrefab; //TODO Handle spawning of player-prefab somewhere else, and tie to the individual character 
 
     private NetworkList<CharacterSelecState> characterStates;
 
@@ -76,9 +76,8 @@ public class CharacterSelectDisplay : NetworkBehaviour
 
     public void SelectCharacter(Character character)
     {
-        // Update UI
+        // Update UI and notify the server
         selectedCharacterText.text = $"Character {character.DisplayName}";
-        // Notify server
         SelectCharacterServerRpc(character.Id);
     }
 
