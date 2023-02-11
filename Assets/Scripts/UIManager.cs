@@ -13,6 +13,8 @@ public class UIManager : NetworkBehaviour
         {
             connectedPlayers.Value = NetworkManager.Singleton.ConnectedClients.Count;
         }
-        playerCountText.text = "Players: " + connectedPlayers.Value;
+        // Show number of connected players when connected
+        bool isConnected = NetworkManager.Singleton.IsConnectedClient || NetworkManager.Singleton.IsHost; 
+        playerCountText.text = isConnected ? "Players: " + connectedPlayers.Value : "Not Connected";
     }
 }
