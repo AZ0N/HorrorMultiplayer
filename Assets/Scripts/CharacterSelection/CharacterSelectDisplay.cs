@@ -77,7 +77,7 @@ public class CharacterSelectDisplay : NetworkBehaviour
     public void SelectCharacter(Character character)
     {
         // Update UI and notify the server
-        selectedCharacterText.text = $"Character {character.DisplayName}";
+        selectedCharacterText.text = $"Character: {character.DisplayName}";
         SelectCharacterServerRpc(character.Id);
     }
 
