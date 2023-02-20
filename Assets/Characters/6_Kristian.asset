@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7144155978117e14c918b3a6197c8681, type: 3}
-  m_Name: Mads
+  m_Name: 6_Kristian
   m_EditorClassIdentifier: 
-  id: 1
-  displayName: Mads
+  id: 6
+  displayName: Kristian
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
