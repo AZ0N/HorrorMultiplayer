@@ -14,6 +14,15 @@ public class MazeGeneratorEditor : Editor
         {
             mazeGenerator.GenerateMaze();
         }
+        if (GUILayout.Button("Generate Random Maze"))
+        {
+            mazeGenerator.SetRandomSeed();
+            mazeGenerator.GenerateMaze();
+        }
+        if (GUILayout.Button("Random Seed"))
+        {
+            mazeGenerator.SetRandomSeed();
+        }
         if (GUILayout.Button("Clear Maze"))
         {
             mazeGenerator.ClearMaze();
