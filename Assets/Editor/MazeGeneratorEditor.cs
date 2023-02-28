@@ -8,10 +8,15 @@ public class MazeGeneratorEditor : Editor
     {
         DrawDefaultInspector();
         MazeGenerator mazeGenerator = (MazeGenerator) target;
-        
+
+        GUILayout.Label("Generation:"); 
         if (GUILayout.Button("Generate Maze"))
         {
             mazeGenerator.GenerateMaze();
+        }
+        if (GUILayout.Button("Clear Maze"))
+        {
+            mazeGenerator.ClearMaze();
         }
     }
 }
