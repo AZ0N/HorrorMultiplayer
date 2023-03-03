@@ -45,7 +45,7 @@ public class PlayerNetwork : NetworkBehaviour
 
         // Cursor Locking
         if (Input.GetKeyDown(KeyCode.Escape)) // Unlock the cursor if the escape key is pressed
-        { 
+        {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
@@ -62,7 +62,7 @@ public class PlayerNetwork : NetworkBehaviour
         rotationX -= mouseY; // X rotation is controlled by the mouse movement on the Y axis
         rotationY += mouseX; // Y rotation is controlled by the mouse movement on the X axis
         rotationX = Mathf.Clamp(rotationX, -90f, 90f);  // Clamp the X rotation to prevent the camera from flipping
-        
+
         // Apply the rotation to the player and camera 
         transform.localRotation = Quaternion.Euler(0, rotationY, 0);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);

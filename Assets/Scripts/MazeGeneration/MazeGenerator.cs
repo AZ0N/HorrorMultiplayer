@@ -53,8 +53,8 @@ public class MazeGenerator : MonoBehaviour
             {
                 Vector3 nodePos = new Vector3(x - (float)(size.x - 1) / 2, 0, y - (float)(size.y - 1) / 2);
                 nodePos *= nodeSize;
-                
-                maze[x,y] = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
+
+                maze[x, y] = Instantiate(nodePrefab, nodePos, Quaternion.identity, transform);
             }
         }
 
@@ -66,7 +66,7 @@ public class MazeGenerator : MonoBehaviour
             {
                 Vector3 pillarPos = new Vector3(x - (float)(size.x - 1) / 2 - 0.5f, 0, y - (float)(size.y - 1) / 2 - 0.5f);
                 pillarPos *= nodeSize;
-                
+
                 Instantiate(pillarPrefab, pillarPos, Quaternion.identity, transform);
             }
         }
@@ -93,7 +93,7 @@ public class MazeGenerator : MonoBehaviour
             }
 
             // Filter out any indexes outside the mazegrid, and where the corresponding mazeNode has already been visited
-            possibleNodes = possibleNodes.FindAll(n => (insideMaze(n.x, n.y) && !maze[n.x,n.y].Visited()));
+            possibleNodes = possibleNodes.FindAll(n => (insideMaze(n.x, n.y) && !maze[n.x, n.y].Visited()));
 
             // If there are no possible moves
             if (possibleNodes.Count == 0)

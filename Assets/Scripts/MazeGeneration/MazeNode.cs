@@ -45,4 +45,4 @@ public class MazeNode : MonoBehaviour
 
 }
 
-public enum WallType {Top, Bot, Right, Left}
+public enum WallType { Top, Bot, Right, Left }

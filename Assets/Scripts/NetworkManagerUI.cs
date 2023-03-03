@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class NetworkManagerUI : MonoBehaviour
 {
-    [SerializeField] private GameObject buttonParent; 
+    [SerializeField] private GameObject buttonParent;
     [SerializeField] private Button hostButton;
     [SerializeField] private Button serverButton;
     [SerializeField] private Button clientButton;
@@ -18,7 +18,7 @@ public class NetworkManagerUI : MonoBehaviour
         clientButton.onClick.AddListener(() => StartClient());
 
         //TODO Determine if it's needed to make a server-instance
-        serverButton.onClick.AddListener(() => {NetworkManager.Singleton.StartServer(); gameObject.SetActive(false);});
+        serverButton.onClick.AddListener(() => { NetworkManager.Singleton.StartServer(); gameObject.SetActive(false); });
     }
 
     private void OnEnable()

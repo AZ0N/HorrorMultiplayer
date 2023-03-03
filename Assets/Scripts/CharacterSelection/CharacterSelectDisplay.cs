@@ -36,7 +36,7 @@ public class CharacterSelectDisplay : NetworkBehaviour
             for (int i = 0; i < characters.Length; i++)
             {
                 CharacterSelectButton charButton = Instantiate(characterButtonPrefab, characterButtonParent);
-                charButton.SetCharacter(this, characters[i]);   
+                charButton.SetCharacter(this, characters[i]);
             }
             characterStates.OnListChanged += OnPlayerStateChanged;
         }
@@ -73,7 +73,7 @@ public class CharacterSelectDisplay : NetworkBehaviour
             {
                 characterStates.RemoveAt(i);
                 break;
-            }   
+            }
         }
     }
 
