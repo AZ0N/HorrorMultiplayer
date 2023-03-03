@@ -2628,6 +2628,7 @@ MonoBehaviour:
   - {fileID: 867340805}
   characterButtonPrefab: {fileID: 7506042953781022641, guid: 06de86161b0a5a640a7bcaa2ba3f93a3, type: 3}
   playerPrefab: {fileID: 6844396505778087015, guid: b8d03e4e5fd02e94f93d9afcadf5c1d6, type: 3}
+  mazeGenerator: {fileID: 686852268}
 --- !u!114 &1780241593
 MonoBehaviour:
   m_ObjectHideFlags: 0

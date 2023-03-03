@@ -17,6 +17,11 @@ public class MazeGenerator : MonoBehaviour
         seed = Random.Range(int.MinValue, int.MaxValue);
     }
 
+    public void SetSeed(int seed)
+    {
+        this.seed = seed;
+    }
+
     // Clear previously generated maze 
     public void ClearMaze()
     {
