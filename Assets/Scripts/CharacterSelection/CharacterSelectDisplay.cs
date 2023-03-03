@@ -3,7 +3,7 @@ using UnityEngine;
 using Unity.Netcode;
 using System.Linq;
 
-public class CharacterSelectDisplay : NetworkBehaviour 
+public class CharacterSelectDisplay : NetworkBehaviour
 {
     [Header("Character DB")]
     [SerializeField] private CharacterDatabase characterDatabase;
@@ -16,6 +16,9 @@ public class CharacterSelectDisplay : NetworkBehaviour
     [Header("Prefabs")]
     [SerializeField] private CharacterSelectButton characterButtonPrefab;
     [SerializeField] private GameObject playerPrefab; //TODO Handle spawning of player-prefab somewhere else, and tie to the individual character 
+
+    [Header("References")]
+    [SerializeField] private MazeGenerator mazeGenerator;
 
     private NetworkList<CharacterSelecState> characterStates;
 
@@ -105,21 +108,31 @@ public class CharacterSelectDisplay : NetworkBehaviour
     {
         if (IsServer)
         {
-            //TODO Do somewhere else!
+            //TODO Do somewhere else! Make event that CharacterSelectDisplay calls, and "GameManager" then handles
+            // Spawn each player-object
             foreach (var playerId in NetworkManager.Singleton.ConnectedClientsIds)
             {
                 //TODO Select prefab based on selected character!
                 GameObject playerGO = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity);
                 playerGO.GetComponent<NetworkObject>().SpawnAsPlayerObject(playerId);
             }
-            GameStartClientRpc();
+
+            //TODO Handle somewhere else.
+            // Generate random maze-seed
+            int seed = Random.Range(int.MinValue, int.MaxValue);
+            GameStartClientRpc(seed);
         }
     }
 
     [ClientRpc]
-    private void GameStartClientRpc(ClientRpcParams clientRpcParams = default) {
-            //TODO Make a child-object holding the UI, so the whole gameObject isn't disabled
-            gameObject.SetActive(false);
+    private void GameStartClientRpc(int mazeSeed, ClientRpcParams clientRpcParams = default)
+    {
+        //TODO Make a child-object holding the UI, so the whole gameObject isn't disabled
+        gameObject.SetActive(false);
+
+        //TODO Handle maze-generation somewhere else, probably in a Game-Manager class
+        mazeGenerator.SetSeed(mazeSeed);
+        mazeGenerator.GenerateMaze();
     }
 
     private void OnPlayerStateChanged(NetworkListEvent<CharacterSelecState> changeEvent)
