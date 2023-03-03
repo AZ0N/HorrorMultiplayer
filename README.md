@@ -8,3 +8,5 @@ Unity Version: **2022.2.5f1**
 
 ## TODO
 - [ ] Handle players connecting once the game has started (GameState-system)
+- [ ] Refactor the handling of maze-generation out from `CharacterSelectDisplay` and into `GameManager` or equivalent
+- [ ] Generate maze-mesh to avoid lighting-issues
