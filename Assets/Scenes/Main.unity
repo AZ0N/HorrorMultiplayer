@@ -1212,7 +1212,7 @@ MonoBehaviour:
   pillarPrefab: {fileID: 5145347976498483557, guid: 264ac117dde715f49b4f53fc95003e8e, type: 3}
   nodeSize: 5
   size: {x: 5, y: 5}
-  seed: 1008274786
+  seed: 0
 --- !u!4 &686852269
 Transform:
   m_ObjectHideFlags: 0
