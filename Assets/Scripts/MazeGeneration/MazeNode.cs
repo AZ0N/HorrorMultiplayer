@@ -33,6 +33,22 @@ public class MazeNode : MonoBehaviour
         }
     }
 
+    public bool HasWall(WallType wallType)
+    {
+        switch (wallType)
+        {
+            case WallType.Top:
+                return TopWall.activeSelf;
+            case WallType.Bot:
+                return BotWall.activeSelf;
+            case WallType.Right:
+                return RightWall.activeSelf;
+            case WallType.Left:
+                return LeftWall.activeSelf;
+        }
+        return false;
+    }
+
     public void Visit()
     {
         visited = true;

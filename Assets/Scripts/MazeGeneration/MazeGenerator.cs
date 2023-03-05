@@ -58,7 +58,6 @@ public class MazeGenerator : MonoBehaviour
             }
         }
 
-        //TODO Create better way to handle the maze-mash than using pillars. It causes light-glitching. Better to generate the walls after generating the maze.
         // Create pillars
         for (int x = 0; x < size.x + 1; x++)
         {
@@ -135,6 +134,29 @@ public class MazeGenerator : MonoBehaviour
                 // Add the chosen node to the stack and mark it as visited
                 stack.Add(chosenNode);
                 maze[chosenNode.x, chosenNode.y].Visit();
+            }
+        }
+
+        //TODO Create better way to handle the maze-mesh than pillars and duplicate walls. Better to generate the walls after generating the maze.
+        // Clear duplicate walls
+        for (int x = 0; x < size.x; x++)
+        {
+            for (int y = 0; y < size.y; y++)
+            {
+                if (x < size.x - 1)
+                {
+                    if (maze[x, y].HasWall(WallType.Right) && maze[x + 1, y].HasWall(WallType.Left))
+                    {
+                        maze[x, y].RemoveWall(WallType.Right);
+                    }
+                }
+                if (y < size.y - 1)
+                {
+                    if (maze[x, y].HasWall(WallType.Top) && maze[x, y + 1].HasWall(WallType.Bot))
+                    {
+                        maze[x, y].RemoveWall(WallType.Top);
+                    }
+                }
             }
         }
     }
