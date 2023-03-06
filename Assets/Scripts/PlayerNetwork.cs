@@ -8,6 +8,7 @@ public class PlayerNetwork : NetworkBehaviour
     [Header("Movement")]
     [SerializeField] private CharacterController controller;
     [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private float gravity = -10f;
     [SerializeField] private float mouseSensitivity = 30f;
 
     [Header("Camera & Audio")]
@@ -20,7 +21,6 @@ public class PlayerNetwork : NetworkBehaviour
 
     private float rotationX = 0;
     private float rotationY = 0;
-
     private float velocityY = 0;
 
     private InputActions inputActions;
@@ -68,7 +68,7 @@ public class PlayerNetwork : NetworkBehaviour
             velocityY = 0;
         }
 
-        velocityY += -10 * Time.deltaTime * Time.deltaTime;
+        velocityY += gravity * Time.deltaTime * Time.deltaTime;
         move.y = velocityY;
         controller.Move(move);
 
