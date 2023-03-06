@@ -439,6 +439,7 @@ GameObject:
   - component: {fileID: 6420295695050600498}
   - component: {fileID: 7472241849382349795}
   - component: {fileID: 8163855554378066132}
+  - component: {fileID: 8207640418467692129}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -517,8 +518,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b648f09ea7cc746956cae662c3e425, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 8207640418467692129}
   moveSpeed: 3
   mouseSensitivity: 30
   playerCamera: {fileID: 5391861370818548155}
   audioListener: {fileID: 7048893807175090869}
   flashlight: {fileID: 2007595452}
+--- !u!143 &8207640418467692129
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6844396505778087015}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}

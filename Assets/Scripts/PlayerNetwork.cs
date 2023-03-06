@@ -1,11 +1,12 @@
-using UnityEngine;
-using Unity.Netcode;
 using System;
+using Unity.Netcode;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerNetwork : NetworkBehaviour
 {
     [Header("Movement")]
+    [SerializeField] private CharacterController controller;
     [SerializeField] private float moveSpeed = 3f;
     [SerializeField] private float mouseSensitivity = 30f;
 
@@ -19,6 +20,8 @@ public class PlayerNetwork : NetworkBehaviour
 
     private float rotationX = 0;
     private float rotationY = 0;
+
+    private float velocityY = 0;
 
     private InputActions inputActions;
     private InputActions.PlayerActions playerActions;
@@ -56,9 +59,18 @@ public class PlayerNetwork : NetworkBehaviour
         if (Cursor.lockState != CursorLockMode.Locked) return;
 
         // Movement
-        Vector2 moveDir = playerActions.Move.ReadValue<Vector2>();
-        moveDir = moveDir.normalized;
-        transform.position += (transform.forward * moveDir.y + transform.right * moveDir.x) * moveSpeed * Time.deltaTime;
+        Vector2 moveDir = playerActions.Move.ReadValue<Vector2>().normalized;
+        Vector3 move = (transform.forward * moveDir.y + transform.right * moveDir.x) * moveSpeed * Time.deltaTime;
+
+        // Gravity
+        if (controller.isGrounded)
+        {
+            velocityY = 0;
+        }
+
+        velocityY += -10 * Time.deltaTime * Time.deltaTime;
+        move.y = velocityY;
+        controller.Move(move);
 
         // Rotation/Looking
         Vector2 lookInput = playerActions.Look.ReadValue<Vector2>();
