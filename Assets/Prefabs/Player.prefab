@@ -275,7 +275,7 @@ Camera:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 6b0174104c45ad54ea3da2e7c08c6474, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -520,6 +520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 8207640418467692129}
   moveSpeed: 3
+  gravity: -10
   mouseSensitivity: 30
   playerCamera: {fileID: 5391861370818548155}
   audioListener: {fileID: 7048893807175090869}
